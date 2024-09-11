@@ -1,8 +1,8 @@
 package wvsdev.projetoapi.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import wvsdev.projetoapi.domain.dto.AuthorDTO;
 import wvsdev.projetoapi.domain.entities.Post;
 import wvsdev.projetoapi.domain.entities.User;
 import wvsdev.projetoapi.domain.repositories.PostRepository;
@@ -32,11 +32,13 @@ public class Instantiation implements CommandLineRunner {
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
 
-        Post p1 = new Post(null, Instant.parse("2024-03-21T21:53:07Z"), "Partiu viagem", "Vou viajar para Sao Paulo. Abraços!", maria);
-
-        Post p2 = new Post(null, Instant.parse("2024-03-21T23:13:45Z"), "Bom dia", "Acordei feliz hoje!", maria);
-
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
+
+        Post p1 = new Post(null, Instant.parse("2024-03-21T21:53:07Z"), "Partiu viagem", "Vou viajar para Sao Paulo. Abraços!", new AuthorDTO(maria));
+
+        Post p2 = new Post(null, Instant.parse("2024-03-21T23:13:45Z"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
+
         postRepository.saveAll(Arrays.asList(p1, p2));
     }
 }

@@ -2,6 +2,7 @@ package wvsdev.projetoapi.domain.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import wvsdev.projetoapi.domain.dto.AuthorDTO;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -16,11 +17,11 @@ public class Post implements Serializable {
     private String body;
 
     //Nao tem anotation???
-    private User author;
+    private AuthorDTO author;
 
     public Post() {
     }
-    public Post(String id, Instant date, String title, String body, User author) {
+    public Post(String id, Instant date, String title, String body, AuthorDTO author) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -59,11 +60,11 @@ public class Post implements Serializable {
     public void setBody(String body) {
         this.body = body;
     }
-    public User getAuthor() {
+    public AuthorDTO getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
 
