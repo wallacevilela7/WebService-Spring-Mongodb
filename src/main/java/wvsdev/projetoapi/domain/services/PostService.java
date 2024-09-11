@@ -6,6 +6,8 @@ import wvsdev.projetoapi.domain.entities.Post;
 import wvsdev.projetoapi.domain.repositories.PostRepository;
 import wvsdev.projetoapi.domain.services.exception.ObjectNotFoundException;
 
+import java.util.List;
+
 @Service
 public class PostService {
 
@@ -14,5 +16,9 @@ public class PostService {
 
     public Post findById(String id) {
         return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Post não encontrado"));
+    }
+
+    public List<Post> findByTitle(String text) {
+        return repository.findByTitleContainingIgnoreCase(text);
     }
 }
