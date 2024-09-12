@@ -6,6 +6,8 @@ import wvsdev.projetoapi.domain.entities.Post;
 import wvsdev.projetoapi.domain.repositories.PostRepository;
 import wvsdev.projetoapi.domain.services.exception.ObjectNotFoundException;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -20,5 +22,10 @@ public class PostService {
 
     public List<Post> findByTitle(String text) {
         return repository.searchTitle(text);
+    }
+
+    public List<Post> fullSearch(String text, Instant minDate, Instant maxDate) {
+        maxDate = maxDate.plus(Duration.ofDays(1));
+        return repository.fullSearch(text, minDate, maxDate);
     }
 }
